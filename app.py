@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, render_template, send_file
 from calculator import get_pvout_annual, calculate_solar_economics, PANEL_WATT_PEAK
 import io
 from fpdf import FPDF
+import os
 
 app = Flask(__name__)
 
@@ -190,4 +191,6 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+
